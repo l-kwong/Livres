@@ -3,6 +3,7 @@ package application;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.prefs.Preferences;
 
@@ -19,8 +20,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
@@ -64,16 +67,19 @@ public class LivreController implements Initializable{
 
     @FXML
     private TextField txtPages;
+    
+    @FXML
+    private TableView<Livre> livresTable;
 
     
     // liste pour les genres - cette liste permettera de donner les valeurs du comboBox
-    public ObservableList<String> list=(ObservableList<String>) FXCollections.observableArrayList("fiction, non-fiction, science-fiction");
+    public ObservableList<String> list=(ObservableList<String>) FXCollections.observableArrayList("fiction", "non-fiction", "science-fiction");
     
     // Placer les livres dans une observable list
  	public ObservableList<Livre> livreData=FXCollections.observableArrayList();
  	
  	// Créer une méthode pour accéder à la liste des livres
- 	public ObservableList<Livre> getelivreData()
+ 	public ObservableList<Livre> getlivreData()
  	{
  		return livreData;
  	}
@@ -96,7 +102,7 @@ public class LivreController implements Initializable{
 		showLivres(null);
 		// Mettre à jour l'affiche d'un livre sélectionné
 		livresTable.getSelectionModel().selectedItemProperty(). addListener((
-				observable, oldValue, newValue)-> showEtudiants(newValue));
+				observable, oldValue, newValue)-> showLivres(newValue));
 
 	}
  	
@@ -225,7 +231,7 @@ public class LivreController implements Initializable{
 	
 	// sauvegarde de données
 	// Recupérer le chemin (path) des fichiers si ça existe
-	public File getEtudiantFilePath()
+	public File getLivreFilePath()
 	{
 		Preferences prefs = Preferences.userNodeForPackage(Main.class);
 		String filePath = prefs.get("filePath", null);
@@ -263,7 +269,7 @@ public class LivreController implements Initializable{
 			
 				LivreListWrapper wrapper = (LivreListWrapper) um.unmarshal(file);
 				livreData.clear();
-				livreData.addAll(wrapper.getEtudiants());
+				livreData.addAll(wrapper.getLivres());
 				setLivreFilePath(file);
 				// Donner le titre du fichier sauvegardé
 				Stage pStage=(Stage) livresTable.getScene().getWindow();
@@ -338,9 +344,9 @@ public class LivreController implements Initializable{
 	@FXML
 	private void handleSave()
 	{
-		File etudiantFile = getEtudiantFilePath();
-		if (etudiantFile != null) {
-			saveLivreDataToFile(etudiantFile);
+		File livreFile = getLivreFilePath();
+		if (livreFile != null) {
+			saveLivreDataToFile(livreFile);
 		} else {
 			handleSaveAs();
 		}

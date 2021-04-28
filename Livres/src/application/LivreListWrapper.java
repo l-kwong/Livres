@@ -10,11 +10,11 @@ public class LivreListWrapper
 {
 	private List<Livre> livres;
 	@XmlElement(name="livres")
-	public List<Livres> getLivres()
+	public List<Livre> getLivres()
 		{
 			return livres;
 		}
-	public void setEtudiants(List<Livre> livres)
+	public void setLivres(List<Livre> livres)
 	{
 		this.livres=livres;
 	}
