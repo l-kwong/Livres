@@ -383,8 +383,8 @@ public class LivreController implements Initializable{
 				FXMLLoader loader=new FXMLLoader(Main.class.getResource("PagesStat.FXML"));
 				AnchorPane pane=loader.load();
 				 Scene scene=new Scene(pane);
-				 PagesStat agestat=loader.getController();
-				 agestat.SetStats(livreData);
+				 PagesStat PagesStat=loader.getController();
+				 PagesStat.SetStats(livreData);
 				 Stage stage=new Stage();
 				 stage.setScene(scene);
 				 stage.setTitle("Statistique");
