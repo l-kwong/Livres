@@ -16,18 +16,18 @@ public class PagesStat {
 	@FXML
 	private CategoryAxis xAxis;
 	
-	private ObservableList<String> intervalAges=FXCollections.observableArrayList();
+	private ObservableList<String> intervalPages=FXCollections.observableArrayList();
 	
 	@FXML 
 	private void initialize()
 	{
-		intervalAges.add("0-100");
-		intervalAges.add("100-200");
-		intervalAges.add("200-300");
-		intervalAges.add("300-400");
-		intervalAges.add("400-500");
-		intervalAges.add("500-600");
-		xAxis.setCategories(intervalAges);
+		intervalPages.add("0-100");
+		intervalPages.add("100-200");
+		intervalPages.add("200-300");
+		intervalPages.add("300-400");
+		intervalPages.add("400-500");
+		intervalPages.add("500-600");
+		xAxis.setCategories(intervalPages);
 	}
 	
 	public void SetStats(List<Livre> livres)
@@ -65,7 +65,7 @@ public class PagesStat {
 		// Création du graphique
 		for(int i=0; i<pagesCounter.length;i++)
 		{
-			series.getData().add(new XYChart.Data<>(intervalAges.get(i), pagesCounter[i]));
+			series.getData().add(new XYChart.Data<>(intervalPages.get(i), pagesCounter[i]));
 		}
 		barChart.getData().add(series);
 	}
