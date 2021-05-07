@@ -16,6 +16,7 @@ public class Main extends Application {
 			scene.getStylesheets().add(getClass().getResource("bootstrap3.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.setTitle("Livres");
+			primaryStage.setResizable(false);
 			primaryStage.show();
 		} catch(Exception e) {
 			e.printStackTrace();
