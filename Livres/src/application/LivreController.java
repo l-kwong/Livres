@@ -389,6 +389,7 @@ public class LivreController implements Initializable{
 				 Stage stage=new Stage();
 				 stage.setScene(scene);
 				 stage.setTitle("Statistique");
+			   	 stage.setResizable(false);
 				 stage.show();
 		} catch (IOException e) {
 				e.printStackTrace();
